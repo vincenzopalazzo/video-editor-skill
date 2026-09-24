@@ -11,8 +11,8 @@ Built from a Grok session that ordered a Bitkey and paid the Lightning invoice. 
 See [AGENTS.md](AGENTS.md). Short version:
 
 ```bash
-git clone https://github.com/vincenzopalazzo/screen-demo-skill.git
-cd screen-demo-skill
+git clone https://github.com/vincenzopalazzo/video-editor-skill.git
+cd video-editor-skill
 mkdir -p ~/.config/goose/skills
 ln -s "$PWD/skills/video-editor" ~/.config/goose/skills/video-editor
 ```
