@@ -1,4 +1,4 @@
-# screen-demo
+# Video editor skill
 
 A skill for cutting a long screen recording into a short demo.
 
@@ -14,14 +14,14 @@ See [AGENTS.md](AGENTS.md). Short version:
 git clone https://github.com/vincenzopalazzo/screen-demo-skill.git
 cd screen-demo-skill
 mkdir -p ~/.config/goose/skills
-ln -s "$PWD/skills/screen-demo" ~/.config/goose/skills/screen-demo
+ln -s "$PWD/skills/video-editor" ~/.config/goose/skills/video-editor
 ```
 
-Then tell the agent to use the screen-demo skill on your recording.
+Then tell the agent to use the video editor skill on your recording.
 
 ## Skill
 
-[skills/screen-demo/SKILL.md](skills/screen-demo/SKILL.md) is what the next agent reads. It has the pacing, the one-subtitle rule, the keyboard bed, the source-seconds trap, and the failures from the first cut.
+[skills/video-editor/SKILL.md](skills/video-editor/SKILL.md) is what the next agent reads. It has the pacing, the one-subtitle rule, the keyboard bed, the source-seconds trap, and the failures from the first cut.
 
 ## License
 

@@ -1,4 +1,4 @@
-# Using the screen-demo skill
+# Using the video editor skill
 
 This repo is a small playbook for cutting a long screen recording into a short demo: the whole window, the human typing, one subtitle of the finished sentence, a real keyboard bed, and a hold on the result.
 
@@ -6,24 +6,24 @@ It came out of a real edit. A 15 minute Grok recording became a 37 second demo o
 
 ## Install
 
-The skill is one file, `skills/screen-demo/SKILL.md`.
+The skill is one file, `skills/video-editor/SKILL.md`.
 
 Goose reads skills from `~/.config/goose/skills/<name>/SKILL.md`. From a checkout of this repo:
 
 ```bash
 mkdir -p ~/.config/goose/skills
-ln -s "$PWD/skills/screen-demo" ~/.config/goose/skills/screen-demo
+ln -s "$PWD/skills/video-editor" ~/.config/goose/skills/video-editor
 ```
 
 A copy works too:
 
 ```bash
-cp -R skills/screen-demo ~/.config/goose/skills/screen-demo
+cp -R skills/video-editor ~/.config/goose/skills/video-editor
 ```
 
-Restart the session, or start a new one, so the skill list refreshes. Then say something like "edit this screen recording" or "use the screen-demo skill".
+Restart the session, or start a new one, so the skill list refreshes. Then say "use the video editor skill" or "edit this screen recording".
 
-Other agents that load a `SKILL.md` from a skills directory can use the same file. Point the agent at `skills/screen-demo/SKILL.md` and tell it to follow that file, not this page.
+Other agents that load a `SKILL.md` from a skills directory can use the same file. Point the agent at `skills/video-editor/SKILL.md` and tell it to follow that file, not this page.
 
 ## What you need
 
@@ -36,7 +36,7 @@ Other agents that load a `SKILL.md` from a skills directory can use the same fil
 Give the agent the recording path and the result you want held at the end.
 
 ```text
-Use the screen-demo skill on ~/Desktop/Screen Recording.mov.
+Use the video editor skill on ~/Desktop/Screen Recording.mov.
 Speed up the typing, subtitle only the final sentence, add a keyboard bed
 under the typing, cut the waiting, and hold the frame where the invoice is paid.
 ```
@@ -55,9 +55,9 @@ If the path has a special space before AM/PM, paste it from Finder. Typing a nor
 ## Layout
 
 ```text
-skills/screen-demo/SKILL.md   the playbook the agent follows
-AGENTS.md                     this page
-README.md                     what the repo is
+skills/video-editor/SKILL.md   the playbook the agent follows
+AGENTS.md                      this page
+README.md                      what the repo is
 ```
 
 There is no code to build. If a later cut teaches a new failure, add it to the failures table in the skill instead of starting a second skill.

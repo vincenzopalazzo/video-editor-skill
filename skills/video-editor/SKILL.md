@@ -1,17 +1,18 @@
 ---
-name: screen-demo
+name: video-editor
 description: >
-  Cut a long screen recording of a human talking to an agent into a short
-  full-screen demo. Speed the typing, show the typed sentence once as a
-  subtitle, put a real keyboard bed under the typing only, delete dead
-  waiting, and hold the payoff (order sent, invoice paid, command finished).
-  Use when the user wants a screen recording edited for X, a demo of an
-  agent chat, typing captions, typing sounds, or a Palmier cut of a desktop
-  recording. Trigger on: screen recording, typing subtitle, keyboard sound,
-  accelerate the chat, remove the waiting, show the whole screen, demo for X.
+  Video editor skill for cutting a long screen recording of a human talking
+  to an agent into a short full-screen demo. Speed the typing, show the typed
+  sentence once as a subtitle, put a real keyboard bed under the typing only,
+  delete dead waiting, and hold the payoff (order sent, invoice paid, command
+  finished). Use when the user wants a screen recording edited for X, a demo
+  of an agent chat, typing captions, typing sounds, or a Palmier cut of a
+  desktop recording. Trigger on: video editor, screen recording, typing
+  subtitle, keyboard sound, accelerate the chat, remove the waiting, show the
+  whole screen, demo for X.
 ---
 
-# Screen demo
+# Video editor
 
 Turn a long desktop recording into a short demo where a viewer can see
 what the human did, read what they typed, and watch the result land.
