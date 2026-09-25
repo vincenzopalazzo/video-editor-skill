@@ -167,6 +167,8 @@ A full-screen demo shows everything in the window. Email threads, street address
 | Black tail in the export | The timeline was longer than the picture. Trim audio, re-export. |
 | Speed trim refused | `edit_speed` reset, then trim, then uniform again. |
 | Punch-in clips the subtitle pill | Widen or shift the crop, re-capture a typing frame before mixing. |
+| Hard punch cuts | Smoothstep zoom in/out (~2 s each) plus slow drift during the hold. |
+| Muxing onto a file while reading it as input | Mux to a temp file, verify a frame, then move it over the deliverable. |
 | VO mix collapses to mono | `aformat=channel_layouts=stereo` on both inputs before `amix`. |
 
 ## Punch-in on typing
@@ -174,9 +176,10 @@ A full-screen demo shows everything in the window. Email threads, street address
 When the composer text is too small to read at full frame, punch in while the human types, then cut back to full frame on send.
 
 - Full frame for the first ~2 s so the viewer orients (sidebar, window, cursor).
-- Punch to ~1.4x on the chat panel plus composer for the typing span. A crop that worked on 1920x1080: `crop=1360:765:460:300,scale=1920:1080`. It keeps the subtitle pill, the composer, and the send button. Verify with a captured frame that the pill's rounded corners are fully inside.
-- Hard cuts are fine. Punch-in is a standard demo cut; a smooth animated zoom is nice but never required.
-- Cut back to full frame the moment the message sends. The reply and payoff always play full screen.
+- Ease to ~1.4x on the chat panel plus composer over ~2 s (smoothstep, not linear), hold with a slow drift while typing, ease back over ~2 s. Never hard-cut the punch; a jump cut on a static screen reads as a glitch.
+- Target that worked on 1920x1080: full punch equals `crop=1360:765:460:300,scale=1920:1080` (center 1140,682). It keeps the subtitle pill, the composer, and the send button. Verify with a captured frame that the pill's rounded corners are fully inside.
+- ffmpeg recipe: `zoompan` with `d=1`, per-frame `z`, `x`, `y` from `on` (output frame number, 30 fps). Ramp `up = smoothstep((on-60)/60)` for t=2-4 s, ramp `down = smoothstep((on-420)/60)` for t=14-16 s, `z = 1+0.4118*up*(1-down)`, center drifting +40/+18 px across the hold. Write the filter with `-filter_complex_script`, never inline quoting.
+- The reply and payoff always play full screen. The camera must be home (z=1) before the send lands.
 - In Palmier, do this with a nested punch or a second angle, not by destroying the full-screen clip. In ffmpeg: split full / punched / full, concat.
 
 ## Voiceover
