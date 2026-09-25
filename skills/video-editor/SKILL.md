@@ -184,7 +184,9 @@ When the composer text is too small to read at full frame, punch in while the hu
 A short voiceover carries the story for viewers watching without reading. Keep it under the video length minus the payoff hold.
 
 - Script first, in this order: the ask, "watch it type", what the agent does, the numbers (order id, sats), the obstacle, the payoff. ~60-70 words for a ~37 s cut.
-- Grok has no TTS API, so Grok writes the script, not the voice. Generate a draft voice locally (`say`, ElevenLabs, or the timeline's `generate_audio`) and mark it as a draft. The user can re-record or swap in their own voice.
+- Grok has no TTS or voice API (xAI docs list no speech endpoint; `/v1/voices` is 404), so Grok writes the script, never the voice. Do not promise the Grok voice from an API call.
+- Draft voice, best first: Edge-TTS neural (`edge_tts`, e.g. `en-US-GuyNeural --rate=-8%` for a masculine read) beats macOS `say` by a mile. Mark any synthetic read as a draft.
+- The only real Grok voice: the user records Grok reading the script in the Grok app (voice mode, 30-60 s) and hands you the audio. Then clone it (ElevenLabs voice clone with a key) or cut the recording itself under the video.
 - Start the VO ~1-1.5 s in. End it before the payoff hold so the last seconds breathe with music only.
 - Duck the bed to ~0.3 under the VO. Keys stay only under typing. VO sits on top at full level, stereo, same sample rate as the timeline (44.1 kHz).
 - ffmpeg mix: `volume='if(between(t,START,END),0.3,1)'` on the bed, `adelay` on the VO, `amix=inputs=2:duration=first`.
