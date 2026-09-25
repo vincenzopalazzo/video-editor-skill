@@ -166,6 +166,28 @@ A full-screen demo shows everything in the window. Email threads, street address
 | Music bed keeps the timeline open after picture ends | Trim the bed to the last picture frame. |
 | Black tail in the export | The timeline was longer than the picture. Trim audio, re-export. |
 | Speed trim refused | `edit_speed` reset, then trim, then uniform again. |
+| Punch-in clips the subtitle pill | Widen or shift the crop, re-capture a typing frame before mixing. |
+| VO mix collapses to mono | `aformat=channel_layouts=stereo` on both inputs before `amix`. |
+
+## Punch-in on typing
+
+When the composer text is too small to read at full frame, punch in while the human types, then cut back to full frame on send.
+
+- Full frame for the first ~2 s so the viewer orients (sidebar, window, cursor).
+- Punch to ~1.4x on the chat panel plus composer for the typing span. A crop that worked on 1920x1080: `crop=1360:765:460:300,scale=1920:1080`. It keeps the subtitle pill, the composer, and the send button. Verify with a captured frame that the pill's rounded corners are fully inside.
+- Hard cuts are fine. Punch-in is a standard demo cut; a smooth animated zoom is nice but never required.
+- Cut back to full frame the moment the message sends. The reply and payoff always play full screen.
+- In Palmier, do this with a nested punch or a second angle, not by destroying the full-screen clip. In ffmpeg: split full / punched / full, concat.
+
+## Voiceover
+
+A short voiceover carries the story for viewers watching without reading. Keep it under the video length minus the payoff hold.
+
+- Script first, in this order: the ask, "watch it type", what the agent does, the numbers (order id, sats), the obstacle, the payoff. ~60-70 words for a ~37 s cut.
+- Grok has no TTS API, so Grok writes the script, not the voice. Generate a draft voice locally (`say`, ElevenLabs, or the timeline's `generate_audio`) and mark it as a draft. The user can re-record or swap in their own voice.
+- Start the VO ~1-1.5 s in. End it before the payoff hold so the last seconds breathe with music only.
+- Duck the bed to ~0.3 under the VO. Keys stay only under typing. VO sits on top at full level, stereo, same sample rate as the timeline (44.1 kHz).
+- ffmpeg mix: `volume='if(between(t,START,END),0.3,1)'` on the bed, `adelay` on the VO, `amix=inputs=2:duration=first`.
 
 ## Done
 
